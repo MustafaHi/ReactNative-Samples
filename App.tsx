@@ -6,8 +6,8 @@ import Card from './card';
 export default function App() {
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.cards}>
-        <Text>Welcome to ReactNative Samples!</Text>
+      <ScrollView contentContainerStyle={styles.cardTable}>
+        <Text style={{marginVertical: 20}}>Welcome to ReactNative Samples!</Text>
         <Card title="Sample 01" text="Welcome! click to get started." background={backgrounds.blue}/>
         <Card title="Sample 02" text="Welcome! click to get started." background={backgrounds.red}/>
       </ScrollView>
@@ -19,12 +19,14 @@ export default function App() {
 const backgrounds = {
   red: {
     colors: ['#ffb199', '#ff0844'],
-    // start: {x: 0, y: 1},
   },
-  blue: {
+  cyan: {
     colors: ['#0093E9', '#80D0C7'],
     start: {x: -0.1, y: 0}
-  }
+  },
+  blue: {
+    colors: ['#6b8cce', '#0c3483'],
+  },
 }
 
 const styles = StyleSheet.create({
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  cards: {
+  cardTable: {
     padding: 10,
   },
 });

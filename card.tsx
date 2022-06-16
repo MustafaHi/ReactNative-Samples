@@ -1,12 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
-import {View, Text, Image, StyleSheet} from "react-native";
+import { Text, Image, StyleSheet } from "react-native";
 
-export default function Card(props: {title: string, text: string, background: LinearGradientProps}) {
+export default function Card({title, text, background}: {title: string, text: string, background: LinearGradientProps})
+{
     return (
-        <LinearGradient {...props.background} style={s.container}>
-            <Text style={s.title}>Card: {props.title}</Text>
-            <Text style={s.text}>{props.text}</Text>
+        <LinearGradient {...background} style={s.container}>
+            <Text style={s.title}>Card: {title}</Text>
+            <Text style={s.text}>{text}</Text>
         </LinearGradient>
     );
 }

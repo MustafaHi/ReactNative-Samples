@@ -1,7 +1,13 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Card from './card';
+
+type RootParam = {
+  Sample01: {}
+}
+const Root = createStackNavigator<RootParam>();
 
 export default function App() {
   return (

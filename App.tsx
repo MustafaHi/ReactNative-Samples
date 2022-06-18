@@ -1,26 +1,39 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, StackScreenProps } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 import Card from './card';
+import Sample01 from './samples/sample01/Main'
 
-type RootParam = {
-  Sample01: {}
-}
-const Root = createStackNavigator<RootParam>();
+const Route = createStackNavigator<RouteParam>();
 
-export default function App() {
+function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.cardTable}>
         <Text style={{marginVertical: 20}}>Welcome to ReactNative Samples!</Text>
-        <Card title="Sample 01" text="Welcome! click to get started." background={backgrounds.blue}/>
-        <Card title="Sample 02" text="Welcome! click to get started." background={backgrounds.red}/>
+        <Card title="Sample 01" text="Welcome! click to get started." background={backgrounds.blue}
+              target='Sample01'/>
+        <Card title="Sample 02" text="Welcome! click to get started." background={backgrounds.red}
+              target='Sample02'/>
       </ScrollView>
       <StatusBar style="auto" />
     </View>
   );
 }
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Route.Navigator>
+        <Route.Screen name='Main' component={Main}/>
+        <Route.Screen name='Sample01' component={Sample01}/>
+      </Route.Navigator>
+    </NavigationContainer>
+  );
+}
+
 
 const backgrounds = {
   red: {

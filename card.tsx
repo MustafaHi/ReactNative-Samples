@@ -1,18 +1,15 @@
 import React from "react";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
-import { View, Text, Image, StyleSheet, PressableProps } from "react-native";
-import { StackScreenProps } from "@react-navigation/stack";
+import { Text, StyleSheet, Pressable } from "react-native";
 
 
-export default function Card({ title, text, background, target }: { title: string, text: string, target: string, background: LinearGradientProps } extends PressableProps) {
-  type Route = StackScreenProps<RouteParam, 'Sample01'>;
-
+export default function Card({ background, onPress, title, text  }: { title: string, text: string, onPress: Function, background: LinearGradientProps }) {
   return (
     <LinearGradient {...background} style={s.container}>
-      <View onTouchEnd={() => { Route.navigation.push('Sample01', {}) }}>
+      <Pressable style={{height: '100%'}} onPress={() => onPress()}>
         <Text style={s.title}>Card: {title}</Text>
         <Text style={s.text}>{text}</Text>
-      </View>
+      </Pressable>
     </LinearGradient>
   );
 }

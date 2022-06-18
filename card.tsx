@@ -9,7 +9,8 @@ export default function Card({ background, onPress, title, text  }: { title: str
   // );
   return (
     <LinearGradient {...background} style={s.container}>
-      {/* <Pressable style={{height: '100%'}} onPress={() => onPressed()}> */}
+      {/* Require throttle to prevent user from triggering the event multiple times
+          in quick sessions and in this case diving into multiple pages! */}
       <Pressable style={{height: '100%'}} onPress={Throttle(onPress, 500)}>
         <Text style={s.title}>Card: {title}</Text>
         <Text style={s.text}>{text}</Text>

@@ -1,3 +1,6 @@
+//| MustafaHi - ReactNative Samples
+//| https://github.com/MustafaHi/ReactNative-Samples
+
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -28,6 +31,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Route.Navigator>
+        {/* `name` of route as defined in `index.d.ts`: `RouteParam`
+             it also define the title of the page! */}
         <Route.Screen name='Main' component={Main}/>
         <Route.Screen name='LoginSample' component={LoginSample}/>
       </Route.Navigator>

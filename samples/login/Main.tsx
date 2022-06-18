@@ -1,11 +1,10 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, Button, TextInput } from 'react-native'
 
-type Sample01Props = StackScreenProps<RouteParam, 'Sample01'>
+type Props = StackScreenProps<RouteParam, 'LoginSample'>
 
-export default function Sample01({ navigation, route }: Sample01Props) {
+export default function LoginSample({ navigation, route }: Props) {
   return (
     <View style={s.container}>
       <Text style={s.title}>Enter Your Access Info</Text>

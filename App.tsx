@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, StackScreenProps } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Card from './card';
-import Sample01 from './samples/sample01/Main';
+import LoginSample from './samples/login/Main';
 // import Sample01 from './samples/sample02/Main';
 
 const Route = createStackNavigator<RouteParam>();
@@ -14,8 +14,8 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.cardTable}>
         <Text style={{marginVertical: 20}}>Welcome to ReactNative Samples!</Text>
-        <Card title="Sample 01" text="Welcome! click to get started." background={backgrounds.blue}
-              onPress={() => { navigation.push('Sample01', {}); }}/>
+        <Card title="Login Screen" text="Welcome! click to get started." background={backgrounds.blue}
+              onPress={() => { navigation.push('LoginSample', {}); }}/>
         {/* <Card title="Sample 02" text="Welcome! click to get started." background={backgrounds.red}
               onPress={() => { navigation.push('Sample02', {}); }}/> */}
       </ScrollView>
@@ -29,7 +29,7 @@ export default function App() {
     <NavigationContainer>
       <Route.Navigator>
         <Route.Screen name='Main' component={Main}/>
-        <Route.Screen name='Sample01' component={Sample01}/>
+        <Route.Screen name='LoginSample' component={LoginSample}/>
       </Route.Navigator>
     </NavigationContainer>
   );

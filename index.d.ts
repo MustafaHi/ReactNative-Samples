@@ -1,5 +1,5 @@
 type RouteParam = {
     Main: any,
-    Sample01: any,
+    LoginSample: any,
     // Sample02: any,
 }

@@ -1,15 +1,17 @@
-import React from "react";
-import { View, Text, Button, Image } from "react-native";
+import { useState, useEffect } from "react";
+import { View, Text, Button, Image, ScrollView } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
-// import CameraRoll from "expo-cameraroll";
-import * as MediaLibrary from "expo-media-library"
+import * as MediaLibrary from "expo-media-library";
 
 type Props = StackScreenProps<RouteParam, 'GallerySample'>
 
-export default function GallerySample({ navigation, route }: Props) {
+export default function GallerySample({ navigation, route }: Props)
+{
+  const [photos, setPhotos] = useState(['']);
   const [status, requestPermission] = MediaLibrary.usePermissions();
 
-  if (status?.granted == false) {
+  if (status?.granted == false)
+  {
     if (status?.canAskAgain) 
       return (
         <View>
@@ -24,51 +26,30 @@ export default function GallerySample({ navigation, route }: Props) {
           <Text>It looks like you blocked request, you must grant permission from system setting!</Text>
         </View>
       );
-  } else {
-    let photos: MediaLibrary.PagedInfo<MediaLibrary.Asset>;
-    MediaLibrary.getAssetsAsync({first: 10}).then((e: any) => {
-      photos = e;
-      let images = [];
-      for (let photo of photos.assets)
-      {
-          images.push(<Image source={{uri: photo.uri}} resizeMode='contain'/>);
-      }
-      return (
-        <View>
-          <Text>Welcome to the Gallery!</Text>
+  }
+
+  else
+  
+  {
+    const getPhotos = async () => {
+      let pics = await MediaLibrary.getAssetsAsync({first: 10, sortBy: 'default'});
+      setPhotos(pics.assets.map(p => p.uri));
+    };
+
+    useEffect(() => { getPhotos(); }, []);
+
+    let images = [];
+    for (let photo of photos)
+      images.push(<Image style={{width: 200, height: 200}} source={{uri: photo}} resizeMode='contain'/>);
+
+    return (
+      <ScrollView>
+        <View style={{flex: 1, flexDirection: 'row', flexWrap: "wrap"}}>
           {images}
         </View>
-      );
-    });
-    // let images = [];
-    // for (let {node: photo} of photos.edges)
-    // {
-    //     images.push(<Image source={photo.image} resizeMode='contain'/>);
-    // }
-    // return (
-    //   <View>
-    //     <Text>Welcome to the Gallery!</Text>
-    //     {images}
-    //   </View>
-    // );
+      </ScrollView>
+    );
   }
-  // let photos = await MediaLibrary.getAssetsAsync({
-  //     first: 10,
-  // });
-  // console.log(photos);
-  // function listPhotos() {
-  //     let images = [];
-  //     for (let {node: photo} of photos.edges)
-  //     {
-  //         images.push(<Image source={photo.image} resizeMode='contain'/>);
-  //     }
-  //     return images;
-  // }
-  // return (
-  //   <View>
-  //     <Text>Welcome to the Gallery!</Text>
-  //     {/* {listPhotos()} */}
-  //   </View>
-  // )
+  
 }
 

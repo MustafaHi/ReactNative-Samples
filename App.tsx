@@ -8,7 +8,7 @@ import { createStackNavigator, StackScreenProps } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import Card from './card';
 import LoginSample from './samples/login/Main';
-import GallarySample from './samples/gallary/Main';
+import GallerySample from './samples/gallery/Main';
 
 const Route = createStackNavigator<RouteParam>();
 
@@ -19,8 +19,8 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
         <Text style={{marginVertical: 20}}>Welcome to ReactNative Samples!</Text>
         <Card title="Login Screen" text="Welcome! click to get started." background={backgrounds.blue}
               onPress={() => { navigation.push('LoginSample', {}); }}/>
-        <Card title="Gallary" text="Welcome! click to get started." background={backgrounds.red}
-              onPress={() => { navigation.push('GallarySample', {}); }}/>
+        <Card title="Gallery" text="Welcome! click to get started." background={backgrounds.red}
+              onPress={() => { navigation.push('GallerySample', {}); }}/>
       </ScrollView>
       <StatusBar style="auto" />
     </View>
@@ -34,8 +34,8 @@ export default function App() {
         {/* `name` of route as defined in `index.d.ts`: `RouteParam`
              it also define the title of the page! */}
         <Route.Screen name='Main' component={Main}/>
-        <Route.Screen name='LoginSample' component={LoginSample}/>
-        <Route.Screen name='GallarySample' component={GallarySample}/>
+        <Route.Screen name='LoginSample' options={{title: "RN-Samples: Login"}} component={LoginSample}/>
+        <Route.Screen name='GallerySample' options={{title: "RN-Samples: Gallery"}} component={GallerySample}/>
       </Route.Navigator>
     </NavigationContainer>
   );

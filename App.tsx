@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, StackScreenProps } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+
 import Card from './card';
 import LoginSample from './samples/login/Main';
 import GallerySample from './samples/gallery/Main';
@@ -19,11 +20,11 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
       <ScrollView contentContainerStyle={styles.cardTable}>
         <Text style={{marginVertical: 20}}>Welcome to ReactNative Samples!</Text>
         <Card title="Login Screen" text="Welcome! click to get started." background={backgrounds.blue}
-              onPress={() => { navigation.push('LoginSample', {}); }}/>
+              target="LoginSample"/>
         <Card title="Gallery" text="Welcome! click to get started." background={backgrounds.red}
-              onPress={() => { navigation.push('GallerySample', {}); }}/>
+              target="GallerySample"/>
         <Card title="Large Gallery" text="Welcome! click to get started." background={backgrounds.cyan}
-              onPress={() => { navigation.push('LargeGallerySample', {}); }}/>
+              target="LargeGallerySample"/>
       </ScrollView>
       <StatusBar style="auto" />
     </View>

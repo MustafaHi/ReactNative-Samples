@@ -2,16 +2,18 @@ import { useState, useCallback } from "react";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 import { Text, StyleSheet, Pressable } from "react-native";
 import { Throttle } from "./utils";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Card({ background, onPress, title, text  }: { title: string, text: string, onPress: Function, background: LinearGradientProps }) {
+export default function Card({ background, title, text, target  }: { target: string, title: string, text: string, background: LinearGradientProps }) {
   // const onPressed = useCallback(
   //   Throttle(onPress, 500), []
   // );
+  const navigation = useNavigation();
   return (
     <LinearGradient {...background} style={s.container}>
       {/* Require throttle to prevent user from triggering the event multiple times
           in quick sessions and in this case diving into multiple pages! */}
-      <Pressable style={{height: '100%'}} onPress={Throttle(onPress, 500)}>
+      <Pressable style={{height: '100%'}} onPress={Throttle(() => navigation.navigate(target, {}), 500)}>
         <Text style={s.title}>Card: {title}</Text>
         <Text style={s.text}>{text}</Text>
       </Pressable>

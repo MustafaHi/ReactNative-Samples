@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import { View, Text, Button, Image, ScrollView } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
+
+//| In regular react-native app you can use CameraRoll,
+//| but for expo use MediaLibrary which provide semilar api
+//| https://docs.expo.dev/versions/v45.0.0/sdk/media-library/
 import * as MediaLibrary from "expo-media-library";
 
 type Props = StackScreenProps<RouteParam, 'GallerySample'>
 
 export default function GallerySample({ navigation, route }: Props)
 {
-  const [photos, setPhotos] = useState(['']);
+  const [photos, setPhotos] = useState<MediaLibrary.PagedInfo<MediaLibrary.Asset> | undefined>();
+  //| Check if the user granted permission, and ask for it if not granted.
   const [status, requestPermission] = MediaLibrary.usePermissions();
 
   if (status?.granted == false)
@@ -32,15 +37,17 @@ export default function GallerySample({ navigation, route }: Props)
   
   {
     const getPhotos = async () => {
-      let pics = await MediaLibrary.getAssetsAsync({first: 10, sortBy: 'default'});
-      setPhotos(pics.assets.map(p => p.uri));
+      //| Get first 20 photo, getting more will lead to slower app, therefore
+      //| LargeGallerySample exist with optimization for larger lists.
+      setPhotos(await MediaLibrary.getAssetsAsync({first: 20, sortBy: 'default'}));
     };
 
+    //| To call async function, useEffect, otherwise issues with other components will arise.
     useEffect(() => { getPhotos(); }, []);
 
     let images = [];
-    for (let photo of photos)
-      images.push(<Image style={{width: 200, height: 200}} source={{uri: photo}} resizeMode='contain'/>);
+    for (let photo of photos?.assets || [])
+      images.push(<Image style={{width: 200, height: 200}} source={{uri: photo.uri}} resizeMode='contain'/>);
 
     return (
       <ScrollView>

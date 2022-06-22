@@ -1,4 +1,4 @@
-//| MustafaHi - ReactNative Samples
+//| MustafaHi - ReactNative Samples - Gallery
 //| https://github.com/MustafaHi/ReactNative-Samples/
 
 import { useState, useEffect } from "react";

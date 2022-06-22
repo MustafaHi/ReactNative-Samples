@@ -1,4 +1,4 @@
-//| MustafaHi - ReactNative Samples
+//| MustafaHi - ReactNative Samples - Login
 //| https://github.com/MustafaHi/ReactNative-Samples/
 
 import { StackScreenProps } from '@react-navigation/stack'

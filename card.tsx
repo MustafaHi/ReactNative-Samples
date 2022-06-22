@@ -30,15 +30,13 @@ const s = StyleSheet.create({
   title: {
     fontSize: 20,
     color: 'white',
-    fontFamily: 'Inter',
-    fontWeight: '600',
+    fontFamily: 'Inter_500Medium',
     margin: 22
   },
   text: {
     fontSize: 15,
     color: 'white',
-    fontFamily: 'Inter',
-    fontWeight: '400',
+    fontFamily: 'Inter_400Regular',
     letterSpacing: 1,
     marginLeft: 22
   }

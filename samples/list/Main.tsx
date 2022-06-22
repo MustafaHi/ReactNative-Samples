@@ -1,3 +1,6 @@
+//| MustafaHi - ReactNative Samples
+//| https://github.com/MustafaHi/ReactNative-Samples/
+
 import { useState, useEffect } from "react";
 import { View, Text, Button, Image, FlatList } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";

@@ -1,3 +1,6 @@
+//| MustafaHi - ReactNative Samples
+//| https://github.com/MustafaHi/ReactNative-Samples/
+
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native'

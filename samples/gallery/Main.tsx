@@ -50,7 +50,7 @@ export default function GallerySample({ navigation, route }: Props)
 
     let images = [];
     for (let photo of photos?.assets || [])
-      images.push(<Image style={{width: 200, height: 200}} source={{uri: photo.uri}} resizeMode='contain'/>);
+      images.push(<Image key={photo.id} source={{uri: photo.uri}} style={{width: 200, height: 200}} resizeMode='contain'/>);
 
     return (
       <ScrollView>

@@ -2,7 +2,7 @@
 //| https://github.com/MustafaHi/ReactNative-Samples/
 
 import { useState } from "react";
-import { View, Text, Image, ImageBackground, StyleSheet, Dimensions } from "react-native"
+import { View, Text, Image, ImageBackground, StyleSheet, Dimensions, ScrollView } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack";
 
 type Props = StackScreenProps<RouteParam, 'IntroSample'>
@@ -11,7 +11,7 @@ export default function IntroSample({ navigation, route }: Props) {
 
   return (
     <View style={s.container}>
-      <View style={s.slides}>
+      <ScrollView horizontal={true} contentContainerStyle={s.slides} pagingEnabled={true} showsHorizontalScrollIndicator={false}>
         <ImageBackground 
         source={require("../../assets/1.png")}
         resizeMode="center"
@@ -39,7 +39,7 @@ export default function IntroSample({ navigation, route }: Props) {
             <Text style={s.text}>Are you sure you want to get in?!</Text>
           </View>
         </ImageBackground>
-      </View>
+      </ScrollView>
       <View style={s.dots}>
         <View style={s.empty}></View>
         <View style={s.filled}></View>
@@ -56,13 +56,11 @@ const s = StyleSheet.create({
     height: '100%',
   },
   slides: {
-    height: '90%',
-    flexDirection: "row",
-    transform: [{translateX: -Dimensions.get('window').width*0}],
   },
   dots: {
     flexDirection: 'row',
     alignSelf: 'center',
+    marginVertical: 20,
   },
   empty: {
     height: 16,
@@ -79,7 +77,7 @@ const s = StyleSheet.create({
   },
   background: {
     height: '90%',
-    width: '100%',
+    width: Dimensions.get('window').width,
   },
   info: {
     marginTop: '100%',
@@ -92,12 +90,13 @@ const s = StyleSheet.create({
   text: {
     marginTop: 30,
     marginHorizontal: 20,
+    padding: 10,
     borderRadius: 10,
     fontSize: 18,
     fontFamily: 'Inter_500Medium',
     textAlign: 'center',
     color: '#444',
-    // backgroundColor: 'rgba(54, 128, 255, 0.14)',
+    backgroundColor: 'rgba(54, 128, 255, 0.14)',
   }
 });
 

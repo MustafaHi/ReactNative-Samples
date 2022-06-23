@@ -3,4 +3,5 @@ type RouteParam = {
     LoginSample: any,
     GallerySample: any,
     LargeGallerySample: any,
+    IntroSample: any,
 }

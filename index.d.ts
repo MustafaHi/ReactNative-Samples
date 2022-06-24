@@ -4,4 +4,5 @@ type RouteParam = {
     GallerySample: any,
     LargeGallerySample: any,
     IntroSample: any,
+    DataSample: any,
 }

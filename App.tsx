@@ -15,6 +15,7 @@ import LoginSample from './samples/login/Main';
 import GallerySample from './samples/gallery/Main';
 import LargeGallerySample from './samples/list/Main';
 import IntroSample from './samples/intro/Main';
+import DataSample from './samples/data/Main';
 
 const Route = createStackNavigator<RouteParam>();
 
@@ -31,6 +32,8 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
               target="LargeGallerySample"/>
         <Card title="Intro Screen" text="Welcome! click to get started." background={backgrounds.cyan}
               target="IntroSample"/>
+        <Card title="Data" text="Welcome! click to get started." background={backgrounds.black}
+              target="DataSample"/>
       </ScrollView>
       <StatusBar style="auto" />
     </View>
@@ -79,6 +82,7 @@ export default function App() {
         <Route.Screen name='GallerySample' options={{title: "RN-Samples: Gallery"}} component={GallerySample}/>
         <Route.Screen name='LargeGallerySample' options={{title: "RN-Samples: Large Gallery"}} component={LargeGallerySample}/>
         <Route.Screen name='IntroSample' options={{title: "RN-Samples: Intro Screen"}} component={IntroSample}/>
+        <Route.Screen name='DataSample' options={{title: "RN-Samples: Data Persistence"}} component={DataSample}/>
       </Route.Navigator>
     </NavigationContainer>
   );

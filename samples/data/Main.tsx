@@ -14,11 +14,11 @@ export default function DataSample() {
   })()}, []);
 
   function onChange(name: keyof typeof data, value: any) {
-    console.log(name, value);
+    // console.log(name, value);
     data[name] = value;
     setData(data);
-    console.log(data);
-    Store.set(data);
+    console.log("setData:", data);
+    Throttle(Store.set, 1000)(data);
   }
 
   return (
@@ -31,6 +31,6 @@ export default function DataSample() {
 
 
 function Input({name, value, onChange}: {name: string, value: string, onChange: Function}) {
-  console.log(onChange);
   return <TextInput value={value} onChange={(value) => onChange(name, value.nativeEvent.text)}/>;
 }
+

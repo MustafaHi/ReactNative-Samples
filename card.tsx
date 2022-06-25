@@ -4,7 +4,7 @@ import { Text, StyleSheet, Pressable } from "react-native";
 import { Throttle } from "./utils";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Card({ background, title, text, target  }: { target: string, title: string, text: string, background: LinearGradientProps }) {
+export default function Card({ background, title, text, target }: { target: string, title: string, text: string, background: LinearGradientProps }) {
   // const onPressed = useCallback(
   //   Throttle(onPress, 500), []
   // );

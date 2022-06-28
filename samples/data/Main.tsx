@@ -13,27 +13,22 @@ function reducer(state: any, action: {type: string, value: any}) {
 }
 
 export default function DataSample() {
-  // const [data, setD] = useState({name: 'sample'});
   const [data, updateData] = useReducer(reducer, {name: 'sample'});
 
-  console.log('data', data);
   useEffect(() => { (async() => {
     try {
       const newData = await Store.get();
-      if   (newData)
+        if (newData)
         updateData({type: 'all', value: newData});
-      console.log('new Data', newData);
-      console.log('updated Data', data);
     } catch(e) {
       console.log('error Data', e);
     }
   })()}, []);
+  useEffect(() => { save(data); }, [data]);
   
   const save = useMemo(() => Debounce((data: object) => Store.set(data), 1000), []);
-  // function onChange(name: keyof typeof data, value: any) {
   function onChange(name: string, value: any) {
     updateData({type: name, value: value});
-    save(data);
   }
 
   return (

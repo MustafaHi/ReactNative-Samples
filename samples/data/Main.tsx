@@ -18,7 +18,7 @@ function reducer(state: any, action: { type: string, value: any }) {
 }
 
 export default function DataSample() {
-  const [data, updateData] = useReducer(reducer, { name: 'sample', ride: 'bike' });
+  const [data, updateData] = useReducer(reducer, { name: 'sample text', ride: 'bike' });
 
   //| Get Data from Storage
   useEffect(() => {
@@ -36,21 +36,21 @@ export default function DataSample() {
     updateData({ type: name, value: value });
   }
 
-  let rideOptions = [
+  let rideOptions: SelectOptions[] = [
     { value: "car", caption: "Car" },
     { value: "bike", caption: "Motor Bike" },
     { value: "cycle", caption: "Bicycle" },
-  ]
+  ];
 
   return (
     <View style={s.container}>
       <Text style={s.text}>Data Persistance | your input will be remembered after you close the application and open it again.</Text>
       <Label caption="User Name" />
-      <Input name="name" value={data.name} onChange={onChange} />
+        <Input name="name" value={data.name} onChange={onChange} />
       <Label caption="Preferred ride" />
-      <Select name="ride" value={data.ride} options={rideOptions} onChange={onChange} />
+        <Select name="ride" value={data.ride} options={rideOptions} onChange={onChange} />
       <Label caption="Print data" />
-      <Button title="Log Data" onPress={() => console.log(data)} />
+        <Button title="Log Data" onPress={() => console.log(data)} />
     </View>
   )
 }

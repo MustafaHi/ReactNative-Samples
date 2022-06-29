@@ -2,40 +2,38 @@
 //| https://github.com/MustafaHi/ReactNative-Samples/
 
 import { useEffect, useReducer, useState, useMemo } from "react";
-import { View, Text, TextInput, Button, Pressable } from "react-native";
+import { View, Text, TextInput, Button, Pressable, StyleSheet } from "react-native";
 import { Debounce } from "../../utils";
 import * as Store from './storage';
 
-function reducer(state: any, action: {type: string, value: any}) {
+function reducer(state: any, action: { type: string, value: any }) {
   switch (action.type) {
     case 'all':
-      return {...state, ...action.value};
+      return { ...state, ...action.value };
     case 'name':
-      return {...state, name: action.value};
+      return { ...state, name: action.value };
     case 'ride':
-      return {...state, ride: action.value};
+      return { ...state, ride: action.value };
   }
 }
 
 export default function DataSample() {
-  const [data, updateData] = useReducer(reducer, {name: 'sample', ride: 'bike'});
+  const [data, updateData] = useReducer(reducer, { name: 'sample', ride: 'bike' });
 
   //| Get Data from Storage
-  useEffect(() => { (async() => {
-    try {
+  useEffect(() => {
+    (async () => {
       const newData = await Store.get();
-        if (newData)
-        updateData({type: 'all', value: newData});
-    } catch(e) {
-      console.log('error Data', e);
-    }
-  })()}, []);
+      if   (newData)
+        updateData({ type: 'all', value: newData });
+    })()
+  }, []);
   //| Save Data to Storage when it change after x time
   useEffect(() => { save(data); }, [data]);
-  
+
   const save = useMemo(() => Debounce((data: object) => Store.set(data), 1000), []);
   function onChange(name: string, value: any) {
-    updateData({type: name, value: value});
+    updateData({ type: name, value: value });
   }
 
   let rideOptions = [
@@ -45,26 +43,31 @@ export default function DataSample() {
   ]
 
   return (
-    <View style={{backgroundColor: 'white'}}>
-      <Text>Data Persistance</Text>
+    <View style={s.container}>
+      <Text style={s.text}>Data Persistance | your input will be remembered after you close the application and open it again.</Text>
+      <Label caption="User Name" />
       <Input name="name" value={data.name} onChange={onChange} />
+      <Label caption="Preferred ride" />
       <Select name="ride" value={data.ride} options={rideOptions} onChange={onChange} />
+      <Label caption="Print data" />
       <Button title="Log Data" onPress={() => console.log(data)} />
     </View>
   )
 }
 
-
-function Input({name, value, onChange}: {name: string, value: string, onChange: Function}) {
-  return <TextInput value={value} onChangeText={(text) => onChange(name, text)}/>;
+function Label({ caption }: { caption: string }) {
+  return <Text style={s.label}>{caption} :</Text>
+}
+function Input({ name, value, onChange }: { name: string, value: string, onChange: Function }) {
+  return <TextInput value={value} onChangeText={(text) => onChange(name, text)} style={s.input}/>;
 }
 
-function Select({name, value, options, onChange} : {name: string, value: string, options: SelectOptions[], onChange: Function}) {
+function Select({ name, value, options, onChange }: { name: string, value: string, options: SelectOptions[], onChange: Function }) {
   let children = [];
   for (let o of options)
-    children.push(<Option key={o.value} props={{...o, active: (o.value == value)}} onChange={(value: string) => onChange(name, value)}/>)
+    children.push(<Option key={o.value} props={{ ...o, active: (o.value == value) }} onChange={(value: string) => onChange(name, value)} />)
   return (
-    <View style={{borderWidth: 2}}>
+    <View style={s.select}>
       {children}
     </View>
   );
@@ -75,11 +78,40 @@ interface SelectOptions {
   active?: boolean;
 }
 
-function Option({props, onChange} : {props: SelectOptions, onChange: Function}) {
+function Option({ props, onChange }: { props: SelectOptions, onChange: Function }) {
   return (
-    <Pressable onPress={() => onChange(props.value)} style={{backgroundColor: props.active ? 'cyan' : 'white'}}>
-      <Text style={{borderWidth: 1, borderColor: "blue", padding: 10}}>{props.caption} - {props.value}</Text>
+    <Pressable onPress={() => onChange(props.value)} style={{ ...s.option, backgroundColor: props.active ? 'cyan' : 'transparent' }}>
+      <Text>{props.caption}</Text>
     </Pressable>
   )
 }
+
+const s = StyleSheet.create({
+  container: {
+    paddingHorizontal: 10,
+    backgroundColor: 'white',
+  },
+  text: {
+    textAlign: 'center',
+    marginVertical: 8,
+  },
+  label: {
+    marginHorizontal: 5,
+    marginVertical: 10,
+    fontSize: 18,
+  },
+  input: {
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  select: {
+    borderWidth: 1,
+    borderRadius: 5,
+    overflow: 'hidden',
+  },
+  option: {
+    padding: 10,
+  },
+});
 

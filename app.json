@@ -28,6 +28,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "MustafaHi\n\nhttps://github.com/MustafaHi\nhttps://github.com/MustafaHi/ReactNative-Samples/",
+    "githubUrl": "https://github.com/MustafaHi/ReactNative-Samples/"
   }
 }

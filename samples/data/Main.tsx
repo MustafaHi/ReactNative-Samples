@@ -5,6 +5,8 @@ import { useEffect, useReducer, useState, useMemo } from "react";
 import { View, Text, TextInput, Button, Pressable, StyleSheet } from "react-native";
 import { Debounce } from "../../utils";
 import * as Store from './storage';
+import Select from "./Select";
+import Checkbox from "./Checkbox";
 
 function reducer(state: any, action: { type: string, value: any }) {
   switch (action.type) {
@@ -14,11 +16,13 @@ function reducer(state: any, action: { type: string, value: any }) {
       return { ...state, name: action.value };
     case 'ride':
       return { ...state, ride: action.value };
+    default:
+      return { ...state, [action.type]: action.value };
   }
 }
 
 export default function DataSample() {
-  const [data, updateData] = useReducer(reducer, { name: 'sample text', ride: 'bike' });
+  const [data, updateData] = useReducer(reducer, { name: 'sample text', ride: 'bike', like: true });
 
   //| Get Data from Storage
   useEffect(() => {
@@ -36,7 +40,7 @@ export default function DataSample() {
     updateData({ type: name, value: value });
   }
 
-  let rideOptions: SelectOptions[] = [
+  let rideOptions: SelectOption[] = [
     { value: "car", caption: "Car" },
     { value: "bike", caption: "Motor Bike" },
     { value: "cycle", caption: "Bicycle" },
@@ -49,6 +53,8 @@ export default function DataSample() {
         <Input name="name" value={data.name} onChange={onChange} />
       <Label caption="Preferred ride" />
         <Select name="ride" value={data.ride} options={rideOptions} onChange={onChange} />
+      <Label caption="Like" />
+        <Checkbox name="like" value={data.like} caption="then click this checkbox" onChange={onChange} />
       <Label caption="Print data" />
         <Button title="Log Data" onPress={() => console.log(data)} />
     </View>
@@ -60,30 +66,6 @@ function Label({ caption }: { caption: string }) {
 }
 function Input({ name, value, onChange }: { name: string, value: string, onChange: Function }) {
   return <TextInput value={value} onChangeText={(text) => onChange(name, text)} style={s.input}/>;
-}
-
-function Select({ name, value, options, onChange }: { name: string, value: string, options: SelectOptions[], onChange: Function }) {
-  let children = [];
-  for (let o of options)
-    children.push(<Option key={o.value} props={{ ...o, active: (o.value == value) }} onChange={(value: string) => onChange(name, value)} />)
-  return (
-    <View style={s.select}>
-      {children}
-    </View>
-  );
-}
-interface SelectOptions {
-  value: string;
-  caption: string;
-  active?: boolean;
-}
-
-function Option({ props, onChange }: { props: SelectOptions, onChange: Function }) {
-  return (
-    <Pressable onPress={() => onChange(props.value)} style={{ ...s.option, backgroundColor: props.active ? 'cyan' : 'transparent' }}>
-      <Text>{props.caption}</Text>
-    </Pressable>
-  )
 }
 
 const s = StyleSheet.create({
@@ -104,14 +86,6 @@ const s = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderRadius: 5,
-  },
-  select: {
-    borderWidth: 1,
-    borderRadius: 5,
-    overflow: 'hidden',
-  },
-  option: {
-    padding: 10,
   },
 });
 

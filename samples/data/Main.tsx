@@ -2,7 +2,7 @@
 //| https://github.com/MustafaHi/ReactNative-Samples/
 
 import { useEffect, useReducer, useState, useMemo } from "react";
-import { View, Text, TextInput, Button, Pressable, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, Switch, StyleSheet } from "react-native";
 import { Debounce } from "../../utils";
 import * as Store from './storage';
 import Select from "./Select";
@@ -22,7 +22,7 @@ function reducer(state: any, action: { type: string, value: any }) {
 }
 
 export default function DataSample() {
-  const [data, updateData] = useReducer(reducer, { name: 'sample text', ride: 'bike', like: true });
+  const [data, updateData] = useReducer(reducer, { name: 'sample text', ride: 'bike', like: true, switch: true });
 
   //| Get Data from Storage
   useEffect(() => {
@@ -55,6 +55,11 @@ export default function DataSample() {
         <Select name="ride" value={data.ride} options={rideOptions} onChange={onChange} />
       <Label caption="Like" />
         <Checkbox name="like" value={data.like} caption="then click this checkbox" onChange={onChange} />
+      <Label caption="Switch" />
+        <View style={s.row}>
+          <Switch value={data.switch} onValueChange={() => onChange("switch", !data.switch)} />
+          <Text>Tab to toggle</Text>
+        </View>
       <Label caption="Print data" />
         <Button title="Log Data" onPress={() => console.log(data)} />
     </View>
@@ -68,10 +73,15 @@ function Input({ name, value, onChange }: { name: string, value: string, onChang
   return <TextInput value={value} onChangeText={(text) => onChange(name, text)} style={s.input}/>;
 }
 
+
 const s = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
     backgroundColor: 'white',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   text: {
     textAlign: 'center',

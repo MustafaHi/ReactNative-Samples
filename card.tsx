@@ -1,3 +1,6 @@
+//| MustafaHi - ReactNative Samples
+//| https://github.com/MustafaHi/ReactNative-Samples
+
 import { useState, useCallback } from "react";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 import { Text, StyleSheet, Pressable } from "react-native";

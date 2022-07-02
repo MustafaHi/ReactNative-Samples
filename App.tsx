@@ -7,6 +7,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, StackScreenProps } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Linking from 'expo-linking';
 import * as Font from 'expo-font';
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -23,7 +24,7 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.cardTable}>
-        <Text style={{marginVertical: 20}}>Welcome to ReactNative Samples!</Text>
+        <Text style={{marginVertical: 20}} onPress={() => Linking.openURL('https://github.com/MustafaHi/ReactNative-Samples')}>Welcome to MustafaHi - ReactNative Samples!</Text>
         <Card title="Login Screen" text="Form layout representing login screen." background={backgrounds.blue}
               target="LoginSample"/>
         <Card title="Gallery" text="Display of images queried from local device files." background={backgrounds.red}
@@ -34,6 +35,10 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
               target="IntroSample"/>
         <Card title="Data" text="Informantion persistance across sessions." background={backgrounds.black}
               target="DataSample"/>
+        <Text style={styles.link} onPress={() => Linking.openURL('https://github.com/MustafaHi/ReactNative-Samples')}>
+          Open GitHub Repository!{'\n'}
+          <Text style={{color: '#0093E9'}}>@MustafaHi/ReactNative-Samples</Text>
+        </Text>
       </ScrollView>
       <StatusBar style="auto" />
     </View>
@@ -112,6 +117,13 @@ const styles = StyleSheet.create({
   },
   cardTable: {
     padding: 10,
+  },
+  link: {
+    padding: 22,
+    marginHorizontal: 22,
+    borderWidth: 1,
+    borderRadius: 5,
+    textAlign: 'center',
   },
 });
 

@@ -14,7 +14,7 @@ export default function Card({ background, title, text, target }: { target: stri
       {/* Require throttle to prevent user from triggering the event multiple times
           in quick sessions and in this case diving into multiple pages! */}
       <Pressable style={{height: '100%'}} onPress={Throttle(() => navigation.navigate(target, {}), 500)}>
-        <Text style={s.title}>Card: {title}</Text>
+        <Text style={s.title}>{title}</Text>
         <Text style={s.text}>{text}</Text>
       </Pressable>
     </LinearGradient>
@@ -38,6 +38,6 @@ const s = StyleSheet.create({
     color: 'white',
     fontFamily: 'Inter_400Regular',
     letterSpacing: 1,
-    marginLeft: 22
+    marginHorizontal: 22
   }
 });

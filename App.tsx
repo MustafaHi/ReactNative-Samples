@@ -24,15 +24,15 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.cardTable}>
         <Text style={{marginVertical: 20}}>Welcome to ReactNative Samples!</Text>
-        <Card title="Login Screen" text="Welcome! click to get started." background={backgrounds.blue}
+        <Card title="Login Screen" text="Form layout representing login screen." background={backgrounds.blue}
               target="LoginSample"/>
-        <Card title="Gallery" text="Welcome! click to get started." background={backgrounds.red}
+        <Card title="Gallery" text="Display of images queried from local device files." background={backgrounds.red}
               target="GallerySample"/>
-        <Card title="Large Gallery" text="Welcome! click to get started." background={backgrounds.black}
+        <Card title="Large Gallery" text="Large list of images displayed without hindering app performance." background={backgrounds.black}
               target="LargeGallerySample"/>
-        <Card title="Intro Screen" text="Welcome! click to get started." background={backgrounds.cyan}
+        <Card title="Intro Screen" text="Swippable Screens severing as an introductory to the app." background={backgrounds.cyan}
               target="IntroSample"/>
-        <Card title="Data" text="Welcome! click to get started." background={backgrounds.black}
+        <Card title="Data" text="Informantion persistance across sessions." background={backgrounds.black}
               target="DataSample"/>
       </ScrollView>
       <StatusBar style="auto" />

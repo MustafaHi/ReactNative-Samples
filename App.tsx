@@ -17,6 +17,7 @@ import GallerySample from './samples/gallery/Main';
 import LargeGallerySample from './samples/list/Main';
 import IntroSample from './samples/intro/Main';
 import DataSample from './samples/data/Main';
+import NotifSample from './samples/notifications/Main';
 
 const Route = createStackNavigator<RouteParam>();
 
@@ -35,6 +36,8 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
               target="IntroSample"/>
         <Card title="Data" text="Informantion persistance across sessions." background={backgrounds.black}
               target="DataSample"/>
+        <Card title="Notification" text="Display notification and handle response." background={backgrounds.black}
+              target="NotifSample"/>
         <Text style={styles.link} onPress={() => Linking.openURL('https://github.com/MustafaHi/ReactNative-Samples')}>
           Open GitHub Repository!{'\n'}
           <Text style={{color: '#0093E9'}}>@MustafaHi/ReactNative-Samples</Text>
@@ -88,6 +91,7 @@ export default function App() {
         <Route.Screen name='LargeGallerySample' options={{title: "RN-Samples: Large Gallery"}} component={LargeGallerySample}/>
         <Route.Screen name='IntroSample' options={{title: "RN-Samples: Intro Screen"}} component={IntroSample}/>
         <Route.Screen name='DataSample' options={{title: "RN-Samples: Data Persistence"}} component={DataSample}/>
+        <Route.Screen name='NotifSample' options={{title: "RN-Samples: Notifications"}} component={NotifSample}/>
       </Route.Navigator>
     </NavigationContainer>
   );

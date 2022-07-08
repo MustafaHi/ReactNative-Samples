@@ -5,6 +5,7 @@ type RouteParam = {
   LargeGallerySample: any,
   IntroSample: any,
   DataSample: any,
+  NotifSample: any,
 }
 
 interface SelectOption {

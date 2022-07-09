@@ -7,7 +7,7 @@ import { Notification } from 'expo-notifications';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
@@ -21,7 +21,6 @@ export default function NotifSample() {
   useEffect(() => {
     (async () => {
       setPushToken(await registerForPushNotificationsAsync());
-      
     })();
 
     notificationListener.current = Notifications.addNotificationReceivedListener(
@@ -73,7 +72,6 @@ async function registerForPushNotificationsAsync() {
     return '';
   }
   token = (await Notifications.getExpoPushTokenAsync()).data;
-  console.log("token", token);
 
   Notifications.setNotificationChannelAsync('default', {
     name: 'default',

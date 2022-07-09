@@ -1,9 +1,9 @@
 # ReactNative-Samples
 
 
-The following are 5 React Native sample projects.
+The following are 7 React Native sample projects.
 
-You can install through Expo
+You can install/Preview through Expo mobile app
 
 https://expo.dev/@mustafahi/ReactNative-Samples
 

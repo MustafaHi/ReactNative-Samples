@@ -1,3 +1,6 @@
+//| MustafaHi - ReactNative Samples - Notifications
+//| https://github.com/MustafaHi/ReactNative-Samples
+
 import { View, Text, Button } from 'react-native'
 
 import * as Notifications from 'expo-notifications';

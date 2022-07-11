@@ -36,7 +36,7 @@ function Main({navigation, route}: StackScreenProps<RouteParam, 'Main'>) {
               target="IntroSample"/>
         <Card title="Data" text="Informantion persistance across sessions." background={backgrounds.black}
               target="DataSample"/>
-        <Card title="Notification" text="Display notification and handle response." background={backgrounds.black}
+        <Card title="Notification" text="Display notification and handle response." background={backgrounds.reddish}
               target="NotifSample"/>
         <Text style={styles.link} onPress={() => Linking.openURL('https://github.com/MustafaHi/ReactNative-Samples')}>
           Open GitHub Repository!{'\n'}
@@ -111,6 +111,9 @@ const backgrounds = {
   },
   black: {
     colors: ['#434343', 'black']
+  },
+  reddish: {
+    colors: ['#A445B2', '#FF0066'],
   }
 }
 

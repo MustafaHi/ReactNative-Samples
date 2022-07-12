@@ -42,16 +42,18 @@ export default function NotifSample() {
 
   return (
     <View>
-      <Text>Display : {pushToken} </Text>
+      <Text>token : {pushToken} </Text>
       <Text>title : {notification && notification.request.content.title}</Text>
-      <Text>Body: {notification && notification.request.content.body}</Text>
-      <Text>Data: {notification && JSON.stringify(notification.request.content.data)}</Text>
+      <Text>Body  : {notification && notification.request.content.body}</Text>
+      <Text>Data  : {notification && JSON.stringify(notification.request.content.data)}</Text>
       <Button title='call notification' onPress={
         () => {
           Notifications.scheduleNotificationAsync({
             content: {
-              title: "called from expo"
+              title: "ReactNative Samples",
+              body: "github.com/MustafaHi/ReactNative-Samples",
             },
+            // delay:
             trigger: null
           });
         }
